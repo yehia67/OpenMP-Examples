@@ -1,4 +1,4 @@
-//gcc -fopenmp pi.c
+//gcc -fopenmp piParallel.c
 //./a.out
 #include <omp.h>
 #include <stdio.h>
