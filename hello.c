@@ -4,12 +4,15 @@
 #include <stdio.h>
 int main()
 {
-        int x = omp_get_max_threads();
-        printf("omp run with max number of threads = %d \n",x);
+       omp_set_num_threads(4);
         #pragma omp parallel
         {
        
-        printf(" yarab = thread num %d \n",omp_get_thread_num());
+        printf("Hello World from thread =  %d \n",omp_get_thread_num());
+        
+        #pragma omp single
+        printf("We have %d threads here.\n",omp_get_num_threads());
+        
         }
 return 0;
 }
