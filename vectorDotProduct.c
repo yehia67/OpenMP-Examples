@@ -1,4 +1,4 @@
-//gcc -fopenmp hello.c
+//gcc -fopenmp vectorDotProduct.c
 //./a.out
 #include <omp.h>
 #include <stdio.h>
