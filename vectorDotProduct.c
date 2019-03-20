@@ -10,7 +10,7 @@ int main()
         float  y[8] = {0,2,4,6,8,10,12,14};
         float ans = 0;
         omp_set_num_threads(noThreads); 
-        #pragma omp parallel
+        #pragma omp parallel reduction(:*ans)
         {
            int id = omp_get_thread_num();
            
