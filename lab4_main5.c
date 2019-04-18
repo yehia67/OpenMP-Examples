@@ -1,34 +1,43 @@
-//gcc -fopenmp lab4_main4.c
+//gcc -fopenmp lab4_main5.c
 //./a.out 
 #include <omp.h>
 #include <stdio.h>
 #include <math.h>
+#define N 5
+ 
 
 int main()
 {
-
-    long w;
-    long A[5] ={0,2,4,6,8};
-    long sum = 0, loc_sum = 0;
+int i;
+int a[N] = {0,7,14,21,28};
+int b[N];
+int c[N];
  
- 
-    omp_set_num_threads(4);
- 
-    #pragma omp parallel firstprivate(w, loc_sum)  
+//Initialize the or compute the elements of a 
+    #pragma omp parallel
     {
-        #pragma omp for schedule(static, 1)
-        for (int i = 0; i < 5; i++)
+        if (omp_get_thread_num() == 0)
         {
-            w = i*i; 
-            loc_sum = loc_sum + w*A[i];
-            printf("Thread %d: w[%d] = %li & partial sum = %li \n",omp_get_thread_num(),i,w,loc_sum);
- 
+            for (int i = 0; i < N; i++)
+            {
+                b[i] = a[i] * 2;
+                printf("Thread %d : b[%d] = %d \n", omp_get_thread_num(), i, b[i]);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < N; i++)
+            {
+                c[i] = (int)pow((float)a[i], 0.5f);
+                printf("Thread %d : c[%d] = %d \n", omp_get_thread_num(), i, c[i]);
+            }
         }
  
-        #pragma omp critical 
-        sum = sum + loc_sum;
+        #pragma omp barrier 
+        printf("Last C is %d\n", c[N - 1]);
  
     }
-    printf("The global sum is throughout the team = %li \n", sum);
+ 
+
     return 0;
 }
