@@ -1,4 +1,4 @@
-//gcc -fopenmp lab4_main3.c
+//gcc -fopenmp lab4_main4.c
 //./a.out 
 #include <omp.h>
 #include <stdio.h>
