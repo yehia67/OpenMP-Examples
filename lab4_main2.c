@@ -8,14 +8,11 @@ int main()
 {
 
     int id, nthreads;
-    // set number of threads to 5
     omp_set_num_threads(5);
-    // start the fork
+  
     #pragma omp parallel private(id)
     {
-        // parallel region started
       
-        //Obtain thread number
         id = omp_get_thread_num();
         printf("Hello World from thread %d\n", id);
  
@@ -26,7 +23,7 @@ int main()
             printf("There are %d Threads in the team!! \n", nthreads);
         }
  
-    }// parallel region ended.
+    }
  
 	return 0;
 }

@@ -10,7 +10,7 @@ int main()
 	int i,id;
 	float c[8], d[8];
     float a[8] = {0,1,2,3,4,5,6,7};
-    float b[8]= {0,3,6,9,12,15,18};
+    float b[8]= {0,3,6,9,12,15,18,21};
 	#pragma omp parallel shared(a,b,c,d) private(i)
 	{
 
